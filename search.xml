@@ -1,0 +1,608 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>Markdown高级语法</title>
+    <url>/markdown-advance-syntax.html</url>
+    <content><![CDATA[<p>只有少数编辑器支持，或者需要安装相应的扩展渲染，使用前请先预览确认。</p>
+<span id="more"></span>
+
+<h1 id="定义列表"><a href="#定义列表" class="headerlink" title="定义列表"></a>定义列表</h1><figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">Term 1</span><br><span class="line">Term 2</span><br><span class="line">:   Definition A</span><br><span class="line">:   Definition B</span><br></pre></td></tr></table></figure>
+
+<p>会被编译成</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dl</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dd</span>&gt;</span>Term 1<span class="tag">&lt;/<span class="name">dd</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dd</span>&gt;</span>Term 2<span class="tag">&lt;/<span class="name">dd</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dt</span>&gt;</span>Definition A<span class="tag">&lt;<span class="name">dt</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dt</span>&gt;</span>Definition A<span class="tag">&lt;<span class="name">dt</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dl</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h1><p>通过<code>[TOC]</code>标记来插入目录。</p>
+<p>在编辑器不支持<code>[TOC]</code>标记的情况下可以使用添加id的方法构建目录。</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="section">## Directory</span></span><br><span class="line"><span class="bullet">*</span> [<span class="string">1.Content one</span>](<span class="link">#chapter1</span>)</span><br><span class="line"><span class="bullet">*</span> [<span class="string">2.Content two</span>](<span class="link">#chapter2</span>)</span><br><span class="line"></span><br><span class="line"><span class="section">## <span class="language-xml"><span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">&quot;chapter1&quot;</span>&gt;</span></span>1.Content one<span class="language-xml"><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span></span></span><br><span class="line"><span class="section">## <span class="language-xml"><span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">&quot;chapter2&quot;</span>&gt;</span></span>2.Content two<span class="language-xml"><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span></span></span><br></pre></td></tr></table></figure>
+
+
+<h1 id="TeX公式"><a href="#TeX公式" class="headerlink" title="TeX公式"></a>TeX公式</h1><p>内联的TeX公式使用一个美元符号标记。</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">$\Gamma(n) = (n-1)!\quad\forall n\in\mathbb N$</span><br></pre></td></tr></table></figure>
+
+<p>会被编译成<br>内联（行内）公式：$\Gamma(n) &#x3D; (n-1)!\quad\forall n\in\mathbb N$</p>
+<p>TeX公式块用独占一行的两个美元符号来标记。</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">$$\left \lbrace \sum<span class="emphasis">_&#123;i=0&#125;^n i^3 = \frac&#123;(n^2+n)(n+6)&#125;&#123;9&#125; \right \rbrace$$</span></span><br></pre></td></tr></table></figure>
+
+<p>会被编译成</p>
+<p>$$\left \lbrace \sum_{i&#x3D;0}^n i^3 &#x3D; \frac{(n^2+n)(n+6)}{9} \right \rbrace$$</p>
+<p>如果你的编辑器不支持这个功能，可以手动解决。首先引入mathjax脚本：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span> <span class="attr">src</span>=<span class="string">&quot;https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>之后，在需要插入公式的地方使用 <code>&lt;script&gt;</code> 标签包裹公式：</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;math/tex&quot;</span>&gt;</span></span>\Gamma(n) = (n-1)!\quad\forall n\in\mathbb N<span class="language-xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;math/tex; mode=display&quot;</span>&gt;</span></span></span><br><span class="line">\Gamma(z) = \int<span class="emphasis">_0^\infty t^&#123;z-1&#125;e^&#123;-t&#125;dt\,.</span></span><br><span class="line"><span class="emphasis"><span class="language-xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span></span><br></pre></td></tr></table></figure>
+
+<p>以上公式展示效果，在实际显示过程中，根据网络加载速度不同会有不同的解析展示速度，TeX的语法参考请见<a href="http://meta.math.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference">这里</a>。</p>
+<h1 id="UML图"><a href="#UML图" class="headerlink" title="UML图"></a>UML图</h1><p>语法为在代码块开始行后面加入语法声明，如 ```mermaid ，然后可以像这样来画uml时序图：</p>
+<pre class="mermaid">sequenceDiagram
+  Alice->>Bob: Hello Bob,how are you?
+  Note right of Bob: Bob thinks
+  Bob-->>Alice: I am fine thanks! and U?
+  Note left of Alice: SB</pre>
+
+<p>其MarkDown代码如下：</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">\<span class="code">`\`</span>\`mermaid</span><br><span class="line">sequenceDiagram</span><br><span class="line">  Alice-&gt;&gt;Bob: Hello Bob,how are you?</span><br><span class="line">  Note right of Bob: Bob thinks</span><br><span class="line">  Bob--&gt;&gt;Alice: I am fine thanks! and U?</span><br><span class="line">  Note left of Alice: SB</span><br><span class="line">\<span class="code">`\`</span>\` #代码块标识会被解析，实际上写代码块时不用添加转义符“\”</span><br></pre></td></tr></table></figure>
+
+<p>时序图的语法请见 <a href="https://mermaidjs.github.io/sequenceDiagram.html">这里</a> 或 <a href="http://bramp.github.io/js-sequence-diagrams/">这里</a>。</p>
+<p>uml流程图：</p>
+<pre class="mermaid">  graph LR;
+    A-->B & C-->D;</pre>
+
+<p>其实现代码如下：</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">\<span class="code">`\`</span>\`mermaid</span><br><span class="line">graph LR;</span><br><span class="line">  A--&gt;B &amp; C--&gt;D;</span><br><span class="line">\<span class="code">`\`</span>\`</span><br></pre></td></tr></table></figure>
+
+<p>流程图的语法请见 <a href="https://mermaidjs.github.io/flowchart.html">这里</a>， 更复杂点的flowchart可以看 <a href="http://adrai.github.io/flowchart.js/">这里</a> 。</p>
+<h1 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h1><ol>
+<li><a href="/how-to-draw-flowchart-with-markdown.html">MarkDown文档中如何画出流程图</a></li>
+<li><a href="https://github.com/wizardforcel/markdown-simple-world">https://github.com/wizardforcel/markdown-simple-world</a></li>
+<li><a href="http://stevenshi.me/2017/06/26/hexo-insert-formula/">http://stevenshi.me/2017/06/26/hexo-insert-formula/</a></li>
+<li><a href="https://blog.csdn.net/u013282174/article/details/80666123">https://blog.csdn.net/u013282174/article/details/80666123</a></li>
+<li><a href="https://www.liuyude.com/How_to_make_your_HEXO_blog_support_handwriting_flowchart.html">https://www.liuyude.com/How_to_make_your_HEXO_blog_support_handwriting_flowchart.html</a></li>
+<li><a href="https://mermaidjs.github.io/">https://mermaidjs.github.io/</a></li>
+</ol>
+<script type="text/javascript" async
+  src="https://unpkg.com/mermaid@9.1.1/dist/mermaid.min.js">
+</script>
+]]></content>
+      <categories>
+        <category>学编程</category>
+      </categories>
+      <tags>
+        <tag>混技能</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/hello-world.html</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+      <tags>
+        <tag>Example</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>从零开始建个小站 - 教程导航</title>
+    <url>/guide-how-to-build-site-0.html</url>
+    <content><![CDATA[<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>互联网时代，大家都想在浩瀚的网络世界留下点印记。</p>
+<p>虽然有微信朋友圈，QQ空间，微博等可以记录点点滴滴，但他们要么是没法扩大圈子，要么是加以各种限制，到头来这些数据产权还都属于马家，更不用谈某天实现增值获取收益，寄人篱下终究不如自己做主：建个自己掌控的网站！</p>
+<p>本简版教程旨在试图引导小白快速上手 Hexo 建站框架，免费或者低成本建个自己的小站，从零开始的详细教程可参考：<a href="https://yiwangmeng.com/?p=226">从零开始建个小站</a>。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/828767/static/images/hugo-hexo.png"></p>
+<h2 id="教程目录"><a href="#教程目录" class="headerlink" title="教程目录"></a>教程目录</h2><ol>
+<li><a href="/guide-how-to-build-site-1.html" title="从零开始建个小站 - 前置知识">从零开始建个小站 - 前置知识</a></li>
+<li><a href="/guide-how-to-build-site-2.html" title="从零开始建个小站 - 建站方案选择">从零开始建个小站 - 建站方案选择</a></li>
+<li><a href="/guide-how-to-build-site-3.html" title="从零开始建个小站 - 1. 搭个本地预览环境">从零开始建个小站 - 1. 搭个本地预览环境</a></li>
+<li><a href="/guide-how-to-build-site-4.html" title="从零开始建个小站 - 2. 拉取仓库到本地">从零开始建个小站 - 2. 拉取仓库到本地</a></li>
+<li><a href="/guide-how-to-build-site-5.html" title="从零开始建个小站 - 3. 搞个编辑器">从零开始建个小站 - 3. 搞个编辑器</a></li>
+<li><a href="/guide-how-to-build-site-6.html" title="从零开始建个小站 - 4. 练手内容维护">从零开始建个小站 - 4. 练手内容维护</a></li>
+<li><a href="/guide-how-to-build-site-7.html" title="从零开始建个小站 - 5. 个性化设置">从零开始建个小站 - 5. 个性化设置</a></li>
+<li><a href="/guide-how-to-build-site-8.html" title="从零开始建个小站 - 6. 其他知识">从零开始建个小站 - 6. 其他知识</a></li>
+<li><a href="/guide-how-to-build-site-9.html" title="从零开始建个小站 - 常见问题">从零开始建个小站 - 常见问题</a></li>
+</ol>
+]]></content>
+      <categories>
+        <category>做网站</category>
+      </categories>
+      <tags>
+        <tag>教程</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>从零开始建个小站 - 前置知识</title>
+    <url>/guide-how-to-build-site-1.html</url>
+    <content><![CDATA[<h1 id="建站须知"><a href="#建站须知" class="headerlink" title="建站须知"></a>建站须知</h1><ol>
+<li>虽然说是零基础建站，但一些互联网及计算机基本知识技能还是不能少的，如怎么安装软件，怎么敲命令，怎么解析域名……</li>
+<li>建站就需要文件托管服务，如上传到GitHub仓库，自己买的云服务器，虚拟主机等</li>
+<li>网站对外需要有IP或者域名（一般都不会直接IP对外服务），所以要么用GitHub提供免费的二级域名，要么自行购买域名并解析到文件托管服务器</li>
+<li>建站时会涉及各种配置设置，而且各程序，各主题都不尽相同，都需要根据实际对象依照文档进行配置，所以需要具备阅读文档的能力</li>
+</ol>
+<h1 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h1><table>
+<thead>
+<tr>
+<th>名词</th>
+<th>解释说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>git</td>
+<td>大名鼎鼎的分布式版本管理工具，每个版本改了什么一目了然</td>
+</tr>
+<tr>
+<td>GitHub</td>
+<td>版本管理托管商，全球最大的男性交友社区</td>
+</tr>
+<tr>
+<td>action</td>
+<td>GitHub提供的在线执行环境，类似于一个虚拟机</td>
+</tr>
+<tr>
+<td>pages</td>
+<td>GitHub提供的网页托管访问服务，每用户一个免费二级域名</td>
+</tr>
+<tr>
+<td>npm</td>
+<td>依赖包管理工具，各种套娃</td>
+</tr>
+<tr>
+<td>MarkDown</td>
+<td>轻量标记语言，写文档必备技能</td>
+</tr>
+<tr>
+<td>服务器&#x2F;云主机</td>
+<td>存放文件24小时在线提供网络访问服务的计算机</td>
+</tr>
+<tr>
+<td>域名</td>
+<td>互联网上便于人类识别记忆的访问地址</td>
+</tr>
+<tr>
+<td>ICP备案</td>
+<td>大陆境内服务器需要，有问题方便FBI请喝茶或上门送温暖</td>
+</tr>
+<tr>
+<td>主题&#x2F;模板</td>
+<td>套用后实展现相应的界面外观及功能</td>
+</tr>
+</tbody></table>
+<h1 id="网站程序选型"><a href="#网站程序选型" class="headerlink" title="网站程序选型"></a>网站程序选型</h1><p>网站程序选型主要依据环境依赖程度和维护难度，以及网络上免费资源可持续性考虑，对大多数普通用户，建议：</p>
+<ul>
+<li>首选 <code>hugo/hexo</code>：HTML静态页渲染框架，速度快，可免费托管到GitHub仓库，MarkDown文档维护，主题多可满足大部分需求。<strong>大部分用户建议选择 hugo 程序</strong>，无需安装麻烦的依赖，而且有将近400套各式主题可选。</li>
+<li>其次 <code>WordPress</code>：需自备服务器，没有免费资源可用，但有后台界面，网络上用户多，插件多，文档教程多</li>
+</ul>
+<p>市面上网站程序比较多，罗列了几个比较主流的框架，更多可以自行通过搜索引擎查找对应文档。</p>
+<table>
+<thead>
+<tr>
+<th>程序框架</th>
+<th>环境依赖</th>
+<th>维护难度</th>
+<th>推荐度</th>
+<th>常见用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>hugo</td>
+<td>&#x2F;</td>
+<td>★★</td>
+<td>★★★★☆</td>
+<td>个人网站，企业官网，在线文档，求职简历</td>
+</tr>
+<tr>
+<td>hexo</td>
+<td>nodejs</td>
+<td>★★</td>
+<td>★★★★★</td>
+<td>个人网站，企业官网，在线文档，求职简历</td>
+</tr>
+<tr>
+<td>gitbook</td>
+<td>nodejs</td>
+<td>★★★★</td>
+<td>★★</td>
+<td>在线文档</td>
+</tr>
+<tr>
+<td>vuepress</td>
+<td>nodejs</td>
+<td>★★★★</td>
+<td>★★★</td>
+<td>个人网站，在线文档</td>
+</tr>
+<tr>
+<td>docsy</td>
+<td>nodejs</td>
+<td>★★★★</td>
+<td>★★★</td>
+<td>在线文档</td>
+</tr>
+<tr>
+<td>WordPress</td>
+<td>MySQL，PHP</td>
+<td>★★★</td>
+<td>★★★★</td>
+<td>个人网站，企业官网</td>
+</tr>
+<tr>
+<td>Typecho</td>
+<td>MySQL，PHP</td>
+<td>★★★☆</td>
+<td>★★★☆</td>
+<td>个人网站，企业官网</td>
+</tr>
+<tr>
+<td>Zblog</td>
+<td>MySQL&#x2F;SQLite，PHP</td>
+<td>★★★</td>
+<td>★★★</td>
+<td>个人网站，企业官网</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>PS：维护难度和推荐度都是主观意见，推荐度高主要是基于部署简单，可选主题多，互联网免费资源多，对最终实现的功能需求未做考虑，大部分情况根据自己实际需求考量。</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>做网站</category>
+      </categories>
+      <tags>
+        <tag>教程</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>从零开始建个小站 - 建站方案选择</title>
+    <url>/guide-how-to-build-site-2.html</url>
+    <content><![CDATA[<p>既然这是篇小白零基础建站教程，那么就不会涉及带门槛的方案，只是简单罗列了适合新手的案例，其他同等方案或者更复杂方案等熟悉了可以再自行研究。</p>
+<span id="more"></span>
+<h1 id="方案对比"><a href="#方案对比" class="headerlink" title="方案对比"></a>方案对比</h1><h2 id="免费：hugo-x2F-hexo-GitHub-GitHub免费二级域名-x2F-自备域名"><a href="#免费：hugo-x2F-hexo-GitHub-GitHub免费二级域名-x2F-自备域名" class="headerlink" title="免费：hugo&#x2F;hexo + GitHub + GitHub免费二级域名&#x2F;自备域名"></a>免费：<strong>hugo&#x2F;hexo + GitHub + GitHub免费二级域名&#x2F;自备域名</strong></h2><pre class="mermaid"> flowchart LR;
+   本地维护MarkDown内容 -- hugo/hexo渲染 -->本地效果预览
+   GitHub私有仓库 -- 可绑定自备域名 --> 公开pages服务
+   本地维护MarkDown内容 <-- git同步 --> GitHub私有仓库 -- 触发action自动渲染 --> 公开pages服务</pre>
+
+<ul>
+<li>优点：有免费资源，静态页速度快，网站源文件通过 git 版本管理安全可靠</li>
+<li>缺点：需要点 MarkDown 语法知识，缺小白界面化管理后台</li>
+</ul>
+<h2 id="付费：WordPress-x2F-Typecho-x2F-Zblog-自备服务器-自备域名"><a href="#付费：WordPress-x2F-Typecho-x2F-Zblog-自备服务器-自备域名" class="headerlink" title="付费：WordPress&#x2F;Typecho&#x2F;Zblog + 自备服务器 + 自备域名"></a>付费：<strong>WordPress&#x2F;Typecho&#x2F;Zblog + 自备服务器 + 自备域名</strong></h2><pre class="mermaid"> flowchart LR;
+   自备域名 -- DNS解析 --> 自备服务器 --> 网站对外服务
+   网站界面后台维护内容 --> 自备服务器 -- 大陆区服务器 --> ICP备案 --> 网站对外服务</pre>
+
+<ul>
+<li>优点：功能强大几乎能满足所有需求，装好后带后台，纯界面操作所见即所得</li>
+<li>缺点：需要自己购买服务器和域名，对服务器要求高，响应速度相对慢点</li>
+</ul>
+<h1 id="准备条件"><a href="#准备条件" class="headerlink" title="准备条件"></a>准备条件</h1><h2 id="免费方案："><a href="#免费方案：" class="headerlink" title="免费方案："></a>免费方案：</h2><pre class="mermaid">flowchart TB;
+免费方案 --必须--> 注册GitHub账号 & 安装Git客户端
+注册GitHub账号 --> 创建仓库 & 配置访问令牌
+安装Git客户端 --编辑MarkDown源码--> 发布到GitHub
+免费方案 --可选--> 安装本地环境 & 装个趁手的编辑器 & 购买域名
+装个趁手的编辑器</pre>
+
+<ol>
+<li><strong>GitHub账号</strong>：要使用免费的资源，得先注册个账号。虽然国内 Gitee 也有，但绑定自己的域名要收费，而且内容要审核，所以还是直接用前首富家的 GitHub 吧。当然，你有自己服务器和域名也可以用来替代。</li>
+<li><strong>Git客户端</strong>：用来同步管理源代码，改了什么一目了然</li>
+<li><strong>MarkDown 编辑器</strong>：纯手工敲代码是不可能的，借助编辑器事半功倍，而且还能和 Git 结合，大大降低难度</li>
+<li><strong>域名「可选」</strong>：花点小钱占个自己的域名赏心悦目，也好打响自己的品牌，万一哪天走了张<a href="/" title="微博在2010年耗资800万收购 weibo.com">伟波</a>的运呢？</li>
+</ol>
+<h2 id="付费方案："><a href="#付费方案：" class="headerlink" title="付费方案："></a>付费方案：</h2><pre class="mermaid">flowchart LR;
+付费方案 --必须--> 购买域名 & 购买服务器
+购买服务器 --大陆区服务器--> ICP备案
+购买服务器 --> 安装环境并部署网站 & 后台发布内容</pre>
+
+<ol>
+<li><strong>域名</strong>：虽然也有免费的，但还是建议花钱买，每年几十元</li>
+<li><strong>服务器&#x2F;云主机&#x2F;虚拟主机</strong>：需要带数据库，支持PHP及安装扩展</li>
+<li><strong>ICP备案</strong>：如果用大陆区服务器，必须先工信部ICP备案后才可用，大约需耗时6周</li>
+</ol>
+<script type="text/javascript" async
+  src="https://cdn.staticfile.org/mermaid/9.1.1/mermaid.min.js">
+</script>
+]]></content>
+      <categories>
+        <category>做网站</category>
+      </categories>
+      <tags>
+        <tag>教程</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>从零开始建个小站 - 1. 搭个本地预览环境</title>
+    <url>/guide-how-to-build-site-3.html</url>
+    <content><![CDATA[<p>如果你选择的是自备服务器的付费方案，那么直接在服务器上安装环境部署网站程序即可，本文不做演示，下文只针对免费方案进行详细说明。</p>
+<p>其实官方默认自带的 <code>hello world</code> 示例就告知了基本的用法，要把细枝末节展开来还能再写一本书，本教程也只是针对本站部署的方案，给新手演示一个大概的操作流程，更多细节或者高深玩法请在熟悉后自行发掘。</p>
+<span id="more"></span>
+<p>虽然也能在线增删改文件，但还是建议拉取仓库到本地电脑进行操作。在本地电脑操作，就有必要搭个本地预览环境。</p>
+<h1 id="1-1-安装-Git-客户端"><a href="#1-1-安装-Git-客户端" class="headerlink" title="1.1 安装 Git 客户端"></a>1.1 安装 Git 客户端</h1><p>仓库文件管理借助大名鼎鼎的代码项目管理工具，到 <a href="https://git-scm.com/downloads">Git-SCM官网</a> 下载安装包或者软件源默认安装完成即可。</p>
+<p>Windows 系统安装完成后，会在右键菜单添加 <code>Git Bash Here</code> 入口，方便后续使用。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/828767/static/images/git_menu_gitbashhere.png" alt="Git Bash Here"></p>
+<p>如果以前未使用过 Git，一般都需要设置用户名和邮箱，随便一个目录空白地方 点右键「Windows系统，其他系统打开系统终端输命令」》 <code>Git Bash Here</code> ，运行以下命令设置：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global user.name name <span class="comment">#设置Git用户名</span></span><br><span class="line">git config --global user.email <span class="string">&quot;email&quot;</span> <span class="comment">#设置Git邮箱</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>这里只是最基本的Git信息设置，后续提交同步 GitHub 等需要额外授权，详见站内后文：<a href="/guide-how-to-build-site-4.html" title="从零开始建个小站 - 2. 拉取仓库到本地">从零开始建个小站 - 2. 拉取仓库到本地</a></p>
+</blockquote>
+<h1 id="1-2-安装-nodejs"><a href="#1-2-安装-nodejs" class="headerlink" title="1.2  安装 nodejs"></a>1.2  安装 nodejs</h1><p>跨平台的JavaScript运行环境和包管理工具。一样的，到 <a href="https://nodejs.org/zh-cn/">Nodejs官网</a> 下载安装包，建议选择长期维护版，默认安装完成即可。</p>
+<p>安装完成后，在前文安装完成的 <code>Git Bash</code> 或者系统终端中输入命令 <code>npm version</code> 验证安装结果：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ npm version</span><br><span class="line">&#123;</span><br><span class="line">  npm: <span class="string">&#x27;8.5.5&#x27;</span>,</span><br><span class="line">  node: <span class="string">&#x27;16.15.0&#x27;</span>,</span><br><span class="line">  ……</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="1-3-安装-hexo"><a href="#1-3-安装-hexo" class="headerlink" title="1.3 安装 hexo"></a>1.3 安装 hexo</h1><p>前文安装完成 <code>npm</code> 包管理器后，就可以安装 <code>hexo</code> 预览客户端了，打开前文安装完成的 <code>Git Bash</code> 或者系统终端，输入以下命令：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 墙内设置npm淘宝源，加快下载速度</span></span><br><span class="line">npm config <span class="built_in">set</span> registry https://registry.npm.taobao.org</span><br><span class="line"><span class="comment"># 系统全局安装hexo</span></span><br><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
+<p>安装完成后可使用命令 <code>hexo version</code> 验证：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo version</span><br><span class="line">INFO  Validating config</span><br><span class="line">hexo: 6.2.0</span><br><span class="line">hexo-cli: 4.3.0</span><br><span class="line">……</span><br></pre></td></tr></table></figure>
+
+<p>至此，网站预览所需要的环境就准备完成。</p>
+]]></content>
+      <categories>
+        <category>做网站</category>
+      </categories>
+      <tags>
+        <tag>教程</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>从零开始建个小站 - 2. 拉取仓库到本地</title>
+    <url>/guide-how-to-build-site-4.html</url>
+    <content><![CDATA[<p>前面的准备工作已完成，剩下就是将仓库文件克隆同步到本地电脑，方便后续维护与预览。</p>
+<span id="more"></span>
+<h1 id="2-1-git-clone"><a href="#2-1-git-clone" class="headerlink" title="2.1 git clone"></a>2.1 git clone</h1><p>还是在 <code>Git Bash</code> 中，输入这样的命令：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> d:\Git   <span class="comment">#先切换到要存放Git文件的目录路径</span></span><br><span class="line">git <span class="built_in">clone</span> --recurse-submodules 自己的仓库地址 <span class="comment">#带子模块一起克隆到本地</span></span><br></pre></td></tr></table></figure>
+
+<p>以上请将仓库地址换成自己的仓库实际地址，建议从仓库页面上复制，获取方法：打开仓库主页》在文件列表右上方有个 <code>Code</code> ，点击下拉复制，如下图所示：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/828767/static/images/github_clone_https_url.png" alt="获取项目仓库地址"></p>
+<p>第一次使用GitHub账号需要授权，默认会有如下图授权提示弹窗，选择从浏览器登录授权，打开浏览器后按提示输入账号密码登录后点击授权，直到出现授权成功的提示就表示授权成功。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/828767/static/images/github-auth-connect.png" alt="连接GitHub账号授权"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/828767/static/images/git-repo-authentication.jpg" alt="浏览器登录授权成功"></p>
+<h1 id="2-2-安装依赖包"><a href="#2-2-安装依赖包" class="headerlink" title="2.2 安装依赖包"></a>2.2 安装依赖包</h1><p>仓库中只包含网站必须的内容源码文件，一些依赖包文件是忽略提交的，所以本地需要重新安装，在仓库根目录路径下运行以下命令：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install</span><br></pre></td></tr></table></figure>
+
+<p>以上命令实际上是下载 <code>package.json</code> 中定义好的依赖包，等依赖包下载完成，整个本地预览环境就全部安装完成了。</p>
+<h1 id="2-3-预览测试"><a href="#2-3-预览测试" class="headerlink" title="2.3 预览测试"></a>2.3 预览测试</h1><p>在仓库根目录路径下运行 <code>hexo s</code> 即可启动预览服务：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">user@IAY MINGW64 /d/Git/action-hexo (main)</span><br><span class="line">$ hexo s</span><br><span class="line">INFO  Validating config</span><br><span class="line">INFO  Start processing</span><br><span class="line">INFO  Hexo is running at http://localhost:4000/ . Press Ctrl+C to stop.</span><br></pre></td></tr></table></figure>
+<p>以上输出信息中，<code>/d/Git/action-hexo (main)</code> 就是所谓 <code>运行路径</code> ，Windows系统表示 <code>d:\Git\action-hexo</code> 目录，当前在 <code>main</code> 分支。</p>
+<p>浏览器中打开 <code>http://localhost:4000</code> 就可以预览，按 <code>Ctrl+C</code> 组合键停止，一些主题或者网站设置变更需要重启该预览服务才能看到效果。</p>
+<h1 id="2-4-用得到的命令"><a href="#2-4-用得到的命令" class="headerlink" title="2.4 用得到的命令"></a>2.4 用得到的命令</h1><ol>
+<li><code>hexo server</code> ：开启本地预览服务，默认端口 <code>4000</code>，可以添加 <code> -p port</code> 指定预览端口，<code>Ctrl + C</code> 关闭，一些网站更改需要重启预览才能看到效果</li>
+<li><code>hexo new &quot;postName&quot;</code> ：新建文章，<code>postName</code> 不建议是中文，也不要添加特殊符号，生成MarkDown 文件在 <code>source/_post</code> 目录下，<code>hexo new</code> 默认新生成的就是 <code>post</code> 类型</li>
+<li><code>hexo new page &quot;pageName&quot;</code> ：新建页面，会在 <code>source</code> 目录下生成 <code>pageName</code> 文件夹及对应 <code>index.md</code></li>
+</ol>
+<p>上面用到的命令对应缩写：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo s == hexo server</span><br><span class="line">hexo n == hexo new</span><br></pre></td></tr></table></figure>
+
+<p>更多命令可自行学习</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo <span class="built_in">help</span>  <span class="comment"># 查看帮助</span></span><br><span class="line">hexo version  <span class="comment">#查看Hexo的版本</span></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>做网站</category>
+      </categories>
+      <tags>
+        <tag>教程</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>从零开始建个小站 - 3. 搞个编辑器</title>
+    <url>/guide-how-to-build-site-5.html</url>
+    <content><![CDATA[<p>工欲善其事必先利其器，一个好用的编辑器可以事半功倍。</p>
+<span id="more"></span>
+<h1 id="3-1-下载安装编辑器"><a href="#3-1-下载安装编辑器" class="headerlink" title="3.1 下载安装编辑器"></a>3.1 下载安装编辑器</h1><p>VSCODE 就是个不错的选择，自行到 <a href="https://code.visualstudio.com/download">微软官方网站</a> 去下载安装。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/828767/static/images/vscode-hexo.png" alt="VSCODE"></p>
+<p>VSCODE 是当前最流行的编辑器，免费开源，专业和业余都能胜任：</p>
+<ol>
+<li>全目录管理，一个界面可以管理整个目录下的文件</li>
+<li>语法格式显示，也能实时预览</li>
+<li>与Git集成，可以界面化操作Git提交同步，比较等</li>
+<li>集成命令终端，预览调试方便</li>
+</ol>
+<p>VSCODE 可以在当前界面直接调出命令行终端，方便输入命令使用：</p>
+<p>启动 <code>VSCODE</code> ，Windows 版可以通过快捷 <code>CTRL+~</code> 或者菜单 <code>Terminal》New Terminal（新建终端）</code></p>
+<p><img src="https://cdn.jsdelivr.net/gh/828767/static/images/vscode_new_terminal.png" alt="新建终端"></p>
+<p>其他如 Atom、Sublime Text、Typroa 之类的编辑器也都可以，甚至是专业的代码编辑器请自行研究。</p>
+<h1 id="3-2-文件一站式管理"><a href="#3-2-文件一站式管理" class="headerlink" title="3.2 文件一站式管理"></a>3.2 文件一站式管理</h1><p>VSCODE 可以很方便地对网站进行管理：</p>
+<p>克隆完成后，通过快捷方式 <code>Ctrl+K Ctrl+O</code> 或者菜单 <code>File（文件）》Open Folder（打开文件夹）</code> 打开刚克隆完的仓库目录。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/828767/static/images/vscode_markdown_editor.png" alt="打开文件夹"></p>
+<p>至此，我们就可以在 <code>vscode</code> 中便捷地增删改网站源文件了。</p>
+<h1 id="3-3-界面化Git操作"><a href="#3-3-界面化Git操作" class="headerlink" title="3.3 界面化Git操作"></a>3.3 界面化Git操作</h1><p>VSCODE 很好地集成了Git操作，在我们增删改文件后，可以直接在编辑器界面与 Git 仓库提交同步：<br><img src="https://cdn.jsdelivr.net/gh/828767/static/images/vscode-git.png" alt="Git操作界面概览"></p>
+<p>提交只是本地操作，要同步到外网，还需要进一步 <strong>推送或同步</strong> ，界面上有好几处 <code>同步</code> 、<code>push</code> 等功能按钮，或者直接点 VSCODE 窗口左下角那个 <code>循环图标</code> 即可完成Git数据同步。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/828767/static/images/github-sync.png" alt="Git同步状态"></p>
+<p>如果想一次性完成提交和推送，可以在填写完变更信息后，点击提交右侧的下拉按钮选择提交并推送。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/828767/static/images/vscode-git-push.png" alt="Git提交并推送"></p>
+<p>VSCODE 界面上其他按钮功能可以将鼠标移动到对应图形上方悬停一下，然后就会有功能提示了，请自行查阅并使用。基本的演示如动图：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/828767/static/images/vscode-git-commit.gif" alt="简单的Git提交演示"></p>
+<p>直接填写变更说明提交表示把所有变更提交，如果只想提交指定某个文件，那么如上图所示，点击变更文件后面的 <code>＋</code> 单独暂存变更并提交，其他未暂存变更的文件不会被提交。</p>
+<p>第一次使用时会提示是否直接提交等提示，请正确选择是，允许等。同时，推送到仓库需要授权，如果是 <code>SSH</code> 仓库地址，请正确配置 SSH 秘钥。</p>
+<p>更多操作建议去学习下 Git 基础知识，可求助我们的战略合作伙伴 Google 和百度。</p>
+<p>虽然项目仓库主页直接增删改文件都可以，但网页上只能一个一个文件操作，建议还是同步到本地使用，借助编辑器事半功倍，也相当于多了个源码本地备份。</p>
+<h1 id="3-4-MarkDown-插件"><a href="#3-4-MarkDown-插件" class="headerlink" title="3.4 MarkDown 插件"></a>3.4 MarkDown 插件</h1><p>作为 MarkDown 编辑器和文件管理器，建议安装以下插件：</p>
+<ol>
+<li>Git History</li>
+<li>GitLens supercharges</li>
+<li>Markdown All in One</li>
+<li>Markdown Preview Mermaid Support</li>
+<li>Markdown Table</li>
+<li>Markdown Shortcuts</li>
+</ol>
+<p>其他有用的插件请自行探索。</p>
+]]></content>
+      <categories>
+        <category>做网站</category>
+      </categories>
+      <tags>
+        <tag>教程</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>从零开始建个小站 - 4. 练手内容维护</title>
+    <url>/guide-how-to-build-site-6.html</url>
+    <content><![CDATA[<p>本实操仅针对 <a href="/guide-how-to-build-site-2.html" title="从零开始建个小站 - 建站方案选择">建站方案选择</a> 中提及的免费方案：<strong>hugo&#x2F;hexo + GitHub + GitHub免费二级域名&#x2F;自备域名</strong> ，另外的付费方案自带网站后台，界面化的一体操作没什么好演示的，如有需要可求助我们的战略合作伙伴Google和百度。</p>
+<p>针对 GitHub 仓库版方案，我们需要做的就两步：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/828767/static/images/github-zsg.png" alt="内容增删改"></p>
+<p>强调三点：</p>
+<ol>
+<li>所有的增删改都需要同步到上端仓库后网络上才能看到变更！！！</li>
+<li>所有的增删改都需要同步到上端仓库后网络上才能看到变更！！！</li>
+<li>所有的增删改都需要同步到上端仓库后网络上才能看到变更！！！</li>
+</ol>
+<ul>
+<li>增：新增文章、页面、图片等</li>
+<li>删：删除文章、页面、图片等</li>
+<li>改：对已有的文章、页面、配置、主题等进行修改</li>
+</ul>
+<p>使用本站提供的项目仓库自动方案，提交源代码后，会自动触发渲染发布，然后需静待上端网络缓存更新后才看到最新结果。</p>
+<h2 id="4-1-新建文章"><a href="#4-1-新建文章" class="headerlink" title="4.1 新建文章"></a>4.1 新建文章</h2><p>新建文章或页面可以通过新建命令或者复制已有范本后再修改，任意方式都可以，只要最终生成符合规则的MarkDown文档即可。</p>
+<h3 id="4-1-1-hexo-n-文件名"><a href="#4-1-1-hexo-n-文件名" class="headerlink" title="4.1.1 hexo n 文件名"></a>4.1.1 <strong><code>hexo n</code> 文件名</strong></h3><p>命令方式新建文章或页面，那必定需要在命令终端内执行。</p>
+<p>打开命令行终端，输入：<code>hexo n post-name</code> ，如：<code>hexo n just-a-test</code> ，就会在 <code>source/_post</code> 目录下生成一个名称为 <code>just-a-test.md</code> 的文件，这就是新文章的 MarkDown 源码了。</p>
+<blockquote>
+<p>生成的新文章源码名称不建议含有特殊符号、汉字</p>
+</blockquote>
+<p>打开源码文件就能看到自动生成了文章标题等基本的 <code>Front-matter</code> 信息，文章标题等按自己的实际内容编写修改。</p>
+<h3 id="4-1-2-复制已有再修改"><a href="#4-1-2-复制已有再修改" class="headerlink" title="4.1.2 复制已有再修改"></a>4.1.2 <strong>复制已有再修改</strong></h3><p><code>复制已有</code> 就是字面意思，不用打开命令行终端输命令，直接到 <code>source/_post</code> 目录下找个已存在的 MarkDown 文件，如：把网站自带的 <code>hello-world.md</code> 这个文件<strong>复制一份改名</strong>为 <code>new-post.md</code> ，然后打开该源码文件，把标题，日期等信息按实际内容需求改好，填充新内容就成了。</p>
+<h2 id="4-2-格式！格式！"><a href="#4-2-格式！格式！" class="headerlink" title="4.2 格式！格式！"></a>4.2 <strong>格式！格式！</strong></h2><p>前文新建文章或页面说明都提到了需要遵循格式。</p>
+<p>一个MarkDown 源码文件，除了 <code>Front-matter</code> 头部信息，其他的就是基本的 MarkDown 语法，MarkDown 语法是页面内容展示，错误与否都只是关系到展示内容样式，而 <code>Front-matter</code> 则直接关系到 hexo 能不能把 MarkDown 源码文件正确渲染成 HTML ，所以遵循正确的 <code>Front-matter</code> 至关重要。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/828767/static/images/hexo-edit.gif" alt="新建文章示例"></p>
+<p>不管是Hugo还是Hexo，他们都只是一种渲染框架，所以MarkDown源代码都需要特定的 <code>Front-matter</code> 标记，也就是两行 <code>---</code> 中间的那段。</p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">title:</span> <span class="string">&#x27;网页模板 pug 基本语法&#x27;</span></span><br><span class="line"><span class="attr">categories:</span> <span class="string">学编程</span></span><br><span class="line"><span class="attr">tags:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">博客建站</span></span><br><span class="line"><span class="attr">date:</span> <span class="number">2021-12-10 15:22:57</span></span><br><span class="line"><span class="attr">updated:</span> <span class="number">2021-12-10 15:22:51</span></span><br><span class="line"><span class="attr">toc:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">comments:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">keywords:</span> <span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="attr">description:</span> <span class="string">&#x27;pug原名jade，因版权问题更名为pug，即哈巴狗。如果 `Front-matter` 内容</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">有跨行或特殊符号等，请用英文引号包起来，就如本段示例。&#x27;</span></span><br><span class="line"><span class="attr">top:</span></span><br><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="string">这里开始就是正文内容了……</span></span><br></pre></td></tr></table></figure>
+<p>以上示例是 Hexo 程序的 <code>Front-matter</code> 头部信息，其中一些设置项也需要对应的主题支持，如果不是 Hexo 基础 <code>Front-matter</code> ，具体需要添加什么根据主题文档来。</p>
+<blockquote>
+<p>注意：每一个参数的 : 或者 - 后，都需要至少留一个空格，如果不填值就无所谓，或者将参数行删除都行，就是不能不留空格直接写，否则会报错，格式有错误时 VSCODE 也会显色提示，请留意。</p>
+</blockquote>
+<p><code>Front-matter</code> 基础配置项可见：</p>
+<ol>
+<li><a href="https://gohugo.io/content-management/front-matter/">Hugo-Front-Matter</a></li>
+<li><a href="https://hexo.io/zh-cn/docs/front-matter">Hexo-Front-matter</a></li>
+</ol>
+<p>在完成了 <code>Front-matter</code> 信息设定后，我们就可以在第二个 <code>---</code> 行下方填充自己想要的内容。内容书写格式默认使用 MarkDown 语法，你直接写 HTML 代码也行，甚至你可以不顾语法当记事本或者Word写是没问题的，无非就是少了些格式样式。</p>
+<blockquote>
+<p>MarkDown 语法边用边学都没问题，本来就没几个语法，可参考 <a href="/guide-how-to-build-site-8.html" title="从零开始建个小站 - 6. 其他知识">从零开始建个小站 - 6. 其他知识</a> 中 <code>MarkDown语法</code> 章节</p>
+</blockquote>
+<h2 id="4-3-提交同步数据"><a href="#4-3-提交同步数据" class="headerlink" title="4.3 提交同步数据"></a>4.3 提交同步数据</h2><p>对于增删改后的内容，我们可以启动本地预览查看效果，没问题了再通过 Git 提交并推送到上端仓库，静待上端渲染及刷新完缓存就能看到最终结果了。</p>
+<blockquote>
+<p>本地预览方法请参见 <a href="/guide-how-to-build-site-4.html" title="从零开始建个小站 - 2. 拉取仓库到本地">从零开始建个小站 - 2. 拉取仓库到本地</a> 中 <code>预览测试</code> 章节内容</p>
+</blockquote>
+<blockquote>
+<p>Git 提交同步数据可用命令行，也可以使用 VSCODE 集成的界面化操作，详情请参考：<a href="/guide-how-to-build-site-5.html" title="从零开始建个小站 - 3. 搞个编辑器">从零开始建个小站 - 3. 搞个编辑器</a></p>
+</blockquote>
+<h2 id="4-4-使用快速模板"><a href="#4-4-使用快速模板" class="headerlink" title="4.4 使用快速模板"></a>4.4 使用快速模板</h2><p>在熟悉了 Hexo 的基础用法后，有些内容是制式固定的，或者想偷个懒一次性都添加好默认内容，那么我们就可以借助自定义快速模板来完成。</p>
+<p>在使用 <code>hexo n</code> 命令新建文章时，其实是遵循模板规则。打开 <code>scaffolds</code> 目录，可见有文章，页面等模板文件，打开源码可见如下内容</p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">title:</span> &#123;&#123; <span class="string">title</span> &#125;&#125; <span class="string">//自动替换标题</span></span><br><span class="line"><span class="attr">date:</span> &#123;&#123; <span class="string">date</span> &#125;&#125; <span class="string">//创建时间</span></span><br><span class="line"><span class="attr">tags:</span>	<span class="string">//没内容就留空，但该</span> <span class="attr">tags:</span> <span class="string">项会创建</span></span><br><span class="line"><span class="meta">---</span></span><br></pre></td></tr></table></figure>
+
+<p>比如在 <code>post.md</code> 添加新内容如下：</p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">title:</span> &#123;&#123; <span class="string">title</span> &#125;&#125;</span><br><span class="line"><span class="attr">date:</span> &#123;&#123; <span class="string">date</span> &#125;&#125;</span><br><span class="line"><span class="attr">tags:</span></span><br><span class="line">   <span class="bullet">-</span> <span class="string">Linux</span></span><br><span class="line">   <span class="bullet">-</span> <span class="string">Windows</span></span><br><span class="line"><span class="attr">top:</span></span><br><span class="line"><span class="meta">---</span></span><br></pre></td></tr></table></figure>
+
+<p>那么，在 <code>hexo n post just-a-test</code> 命令执行后，生成的新文章默认就会带上新加内容，其他用法以此类推。</p>
+]]></content>
+      <categories>
+        <category>做网站</category>
+      </categories>
+      <tags>
+        <tag>教程</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>从零开始建个小站 - 5. 个性化设置</title>
+    <url>/guide-how-to-build-site-7.html</url>
+    <content><![CDATA[<p>项目仓库克隆下来，网站的各项设置都是默认的，一些标题，作者之类的需要根据自己的实际情况进行修改，个性设置主要是网站根目录的网站基础配置和主题配置。</p>
+<p>好在 <code>hugo</code> 和 <code>hexo</code> 配置结构大同小异，而且都支持将配置文件放在网站根目录下，只需要修改配置，今后主题更新只需要同步配置其他也互不影响。</p>
+<span id="more"></span>
+<h1 id="5-1-认识文件"><a href="#5-1-认识文件" class="headerlink" title="5.1 认识文件"></a>5.1 认识文件</h1><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">action-hexo    <span class="comment">#hexo程序工作目录</span></span><br><span class="line">|   README.md <span class="comment">#说明文档</span></span><br><span class="line">|   .gitignore  <span class="comment">#指定Git提交时忽略的文件规则</span></span><br><span class="line">|   package.json  <span class="comment">#依赖包记录，不要动</span></span><br><span class="line">|   _config.yml  <span class="comment">#网站基础配置文件，定义网站标题，作者等</span></span><br><span class="line">|   _config.fluid.yml  <span class="comment">#fluid这个主题的配置文件，来源于且优先级高于主题目录下的_config.yml</span></span><br><span class="line">|</span><br><span class="line">+---node_modules  <span class="comment">#hexo的依赖环境，不要动，一般都会添加到.gitignore忽略</span></span><br><span class="line">+---scaffolds  <span class="comment">#文章/页面/草稿模板，不会就不要动</span></span><br><span class="line">|</span><br><span class="line">+---<span class="built_in">source</span>  <span class="comment">#网站内容根目录，网络路径为：/</span></span><br><span class="line">|   favicon.ico <span class="comment">#网站图标，网络路径为：/favicon.ico</span></span><br><span class="line">|   \---images  <span class="comment">#自建文件夹用来放图片资源，网络路径为：/images</span></span><br><span class="line">|   |   GoodHexo.png  <span class="comment">#/images下的图片，引用地址为：/images/GoodHexo.png，也可以相对路径：../images/GoodHexo.png</span></span><br><span class="line">|   \---_posts  <span class="comment">#你所有的文章都存在这个目录底下</span></span><br><span class="line">|   |   hello-world.md  <span class="comment">#示例文章源文件，该MarkDown文件会被hexo渲染成HTML页发布</span></span><br><span class="line">|   \---about  <span class="comment">#自建的一个叫 about 的页面目录</span></span><br><span class="line">|   |   index.md  <span class="comment">#about 页面内容，网络路径为：/about/</span></span><br><span class="line">|   |</span><br><span class="line">+---themes  <span class="comment">#主题存放目录</span></span><br><span class="line">|   \---landscape <span class="comment">#默认主题</span></span><br><span class="line">|   \---butterfly <span class="comment">#另一个主题</span></span><br><span class="line">|   \---fluid <span class="comment">#另一个主题</span></span><br><span class="line">|   |</span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/828767/static/images/hexo-files-tree.png" alt="认识hexo文件"></p>
+<h1 id="5-2-网站设置"><a href="#5-2-网站设置" class="headerlink" title="5.2 网站设置"></a>5.2 网站设置</h1><p>从上文可知，网站基础配置需要在 <code>hexo程序工作目录</code> 中的 <code>_config.yml</code> 进行配置：</p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Site</span></span><br><span class="line"><span class="attr">title:</span> <span class="string">易网盟</span> <span class="comment">#网站标题</span></span><br><span class="line"><span class="attr">subtitle:</span> <span class="string">&#x27;专注网站建设优化&#x27;</span> <span class="comment">#网站副标题</span></span><br><span class="line"><span class="attr">description:</span> <span class="string">&#x27;Hexo + GitHub免费仓库托管方案，微软不倒，羊毛到老！&#x27;</span> <span class="comment">#网站描述</span></span><br><span class="line"><span class="attr">keywords:</span> <span class="string">静态网站</span>  <span class="comment">#网站关键词，不是所有的主题都支持</span></span><br><span class="line"><span class="attr">author:</span> <span class="string">易网盟</span>  <span class="comment">#作者</span></span><br><span class="line"><span class="attr">timezone:</span> <span class="string">&#x27;Asia/Shanghai&#x27;</span> <span class="comment">#时区，一般中国时区</span></span><br><span class="line"><span class="comment"># language: en  #网站语言，默认 en，请根据主题文档设置</span></span><br><span class="line"><span class="attr">language:</span> <span class="string">zh-CN</span></span><br></pre></td></tr></table></figure>
+<p>打开查看内容就能知道大概了，都有对应的注释，请根据自己实际情况修改填写，或者可以参阅 <a href="https://hexo.io/docs/configuration.html">官方配置文档</a>。</p>
+<h1 id="5-3-主题设置"><a href="#5-3-主题设置" class="headerlink" title="5.3 主题设置"></a>5.3 主题设置</h1><p>主题设置每个主题都不一样，所以需要根据实际使用的主题文档去配置，一般在主题目录下都会有个 <code>README.md</code> ，请打开或者找到主题在线文档去阅读，主题让装啥就装啥，让咋改就咋改。</p>
+<p>为了以后更新主题时不覆盖我们已经配置好的内容，可以将主题目录下的 <code>_config.yml</code> 复制到 <code>hexo程序工作目录</code> 下，并重命名为：<code>_config.主题名.yml</code> ，如：<code>_config.fluid.yml</code> 。</p>
+<p>然后按照主题说明文档在新复制的主题配置中按需进行配置，以后主题有更新，如果涉及到该配置文件变更，请将最新内容同步到 <code>_config.主题名.yml</code> 中即可。</p>
+]]></content>
+      <categories>
+        <category>做网站</category>
+      </categories>
+      <tags>
+        <tag>教程</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>从零开始建个小站 - 6. 其他知识</title>
+    <url>/guide-how-to-build-site-8.html</url>
+    <content><![CDATA[<p>想到什么写什么，如果没有你关心的问题，请一如既往的求助本站战略合作伙伴 Google和百度。</p>
+<span id="more"></span>
+<h1 id="6-1-git基础"><a href="#6-1-git基础" class="headerlink" title="6.1 git基础"></a>6.1 git基础</h1><p>网络上优秀教程一大片，不浪费时间精力了，随便找一个：<a href="https://www.runoob.com/git/git-basic-operations.html">Git 教程 | 菜鸟教程</a>，边用边学就行，俺们也是这样过来的。</p>
+<h1 id="6-2-让git通过代理连接"><a href="#6-2-让git通过代理连接" class="headerlink" title="6.2 让git通过代理连接"></a>6.2 让git通过代理连接</h1><p>有些地区直接无法连接全球男性交友社区，也就无从谈起仓库增删改，就需要借助代理连接，可通过以下命令指定Git走代理网络：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#这里使用socks5 端口为1080，具体端口看代理软件配置</span></span><br><span class="line">git config --global http.proxy <span class="string">&#x27;socks5://127.0.0.1:1080&#x27;</span> </span><br><span class="line">git config --global https.proxy <span class="string">&#x27;socks5://127.0.0.1:1080&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>查看代理：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global --get http.proxy</span><br><span class="line">git config --global --get https.proxy</span><br></pre></td></tr></table></figure>
+
+<p>取消代理：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global --<span class="built_in">unset</span> http.proxy</span><br><span class="line">git config --global --<span class="built_in">unset</span> https.proxy</span><br></pre></td></tr></table></figure>
+
+<p>或者也可以通过编辑 Git 配置文件直接配置，打开 <code>用户目录/.gitconfig</code> ，Windows系统如 <code>C:\Users\ywm\.gitconfig</code> ，增加如下内容：</p>
+<figure class="highlight toml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 这是个使用 clash 代理的默认端口示例，具体请看代理软件配置</span></span><br><span class="line"><span class="section">[core]</span></span><br><span class="line">	<span class="attr">gitproxy</span> = socks5://<span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">7890</span></span><br><span class="line"><span class="section">[http]</span></span><br><span class="line">	<span class="attr">postBuffer</span> = <span class="number">524288000</span></span><br><span class="line">	<span class="attr">postBuffer</span> = <span class="number">524288000</span></span><br><span class="line">	<span class="attr">proxy</span> = socks5://<span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">7890</span></span><br><span class="line"><span class="section">[https]</span></span><br><span class="line">	<span class="attr">postBuffer</span> = <span class="number">524288000</span></span><br><span class="line">	<span class="attr">postBuffer</span> = <span class="number">524288000</span></span><br><span class="line">	<span class="attr">proxy</span> = socks5://<span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">7890</span></span><br></pre></td></tr></table></figure>
+
+<p>打开这个文件可见之前配置的用户名称和email信息，直接通过编辑配置文件和通过命令设置理是一样的效果。</p>
+<h1 id="6-3-hexo高级语法"><a href="#6-3-hexo高级语法" class="headerlink" title="6.3 hexo高级语法"></a>6.3 hexo高级语法</h1><p>如果只是普通的写写博客，做个小展示网站什么的，高级语法也不需要。但用上些高级语法，在处理大量同质内容时就事半功倍了，直接见官方文档吧：</p>
+<ol>
+<li><a href="https://hexo.io/docs/data-files">hexo：Data Files</a></li>
+</ol>
+<h1 id="6-4-MarkDown语法"><a href="#6-4-MarkDown语法" class="headerlink" title="6.4 MarkDown语法"></a>6.4 MarkDown语法</h1><h2 id="📌-Titles"><a href="#📌-Titles" class="headerlink" title="📌 Titles"></a>📌 <strong>Titles</strong></h2><ul>
+<li>Heading 1: <code># A first-level title</code></li>
+<li>Heading 2: <code># A second-level title</code></li>
+<li>Heading 3: <code>## A third-level title</code></li>
+</ul>
+<h2 id="💻-Code-blocks"><a href="#💻-Code-blocks" class="headerlink" title="💻 Code blocks"></a>💻 <strong>Code blocks</strong></h2><p><code>creates a new code block.</code>，源码如下：</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="code">`creates a new code block.`</span></span><br></pre></td></tr></table></figure>
+
+<p><code>```py</code> creates a new code block with Python syntax highlighting.</p>
+<h2 id="📋-Lists"><a href="#📋-Lists" class="headerlink" title="📋 Lists"></a><strong>📋</strong> <strong>Lists</strong></h2><p>We automatically detect ordered and un-ordered lists as you type. </p>
+<p>Begin a line with <code>- </code> or <code>* </code> to start a bullet list.<br>Being a line with <code>1. </code> to start a numbered list. Use <code>Tab</code> to go one level deeper, and <code>Shift+Tab</code> to go up. Begin a line with <code>- [ ] </code> to start a task list.</p>
+<h2 id="🎤-Quotes"><a href="#🎤-Quotes" class="headerlink" title="🎤 Quotes"></a><strong>🎤</strong> <strong>Quotes</strong></h2><p>Begin a line with <code>&gt; </code> to create a block quote.</p>
+<h2 id="🐮-emoji-markup"><a href="#🐮-emoji-markup" class="headerlink" title="🐮 emoji markup"></a><strong>🐮</strong> <strong>emoji markup</strong></h2><p>😊 	<em>😃</em> 	😴</p>
+<p><a href="https://gist.github.com/rxaviers/7360908">Complete list of github markdown emoji markup</a></p>
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ol>
+<li><a href="http://xianbai.me/learn-md/article/about/readme.html">Markdown 入门参考</a></li>
+<li><a href="https://markdown.com.cn/basic-syntax/">Markdown 基本语法</a></li>
+<li><a href="https://www.runoob.com/markdown/md-tutorial.html">Markdown 菜鸟教程</a></li>
+</ol>
+]]></content>
+      <categories>
+        <category>做网站</category>
+      </categories>
+      <tags>
+        <tag>教程</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>从零开始建个小站 - 常见问题</title>
+    <url>/guide-how-to-build-site-9.html</url>
+    <content><![CDATA[<h2 id="文档看不懂-x2F-不想看-x2F-太麻烦-x2F-我不会……"><a href="#文档看不懂-x2F-不想看-x2F-太麻烦-x2F-我不会……" class="headerlink" title="文档看不懂&#x2F;不想看&#x2F;太麻烦&#x2F;我不会……"></a>文档看不懂&#x2F;不想看&#x2F;太麻烦&#x2F;我不会……</h2><p>懒那就没辙了，快发动你的钞能力！</p>
+<div style="float:left;border:solid 1px 000;margin:2px;"><img src="https://cdn.jsdelivr.net/gh/828767/static/images/QR-atm.png"  width="200" height="260" ></div>
+
+<div style="float:left;border:solid 1px 000;margin:2px;"><img src="https://cdn.jsdelivr.net/gh/828767/static/images/QR-Taobao.png" width="200" height="260" ></div>
+
+<div style="float:left;border:solid 1px 000;margin:2px;"><img src="https://cdn.jsdelivr.net/gh/828767/static/images/QR-QQ-260489333.png" width="200" height="260" ></div>
+<div style="clear:both"></div>
+
+
+<h2 id="GitHub咋打不开？"><a href="#GitHub咋打不开？" class="headerlink" title="GitHub咋打不开？"></a>GitHub咋打不开？</h2><p>各地网络管制松紧度不一样，无法访问就上梯子吧，配置方法请见：<a href="/guide-how-to-build-site-8.html" title="从零开始建个小站 - 6. 其他知识">从零开始建个小站 - 6. 其他知识</a> 中相关内容。</p>
+<h2 id="换电脑怎么办"><a href="#换电脑怎么办" class="headerlink" title="换电脑怎么办"></a>换电脑怎么办</h2><p>本站提供的仓库方案，只要你仓库不删就不会丢，新电脑上照本站使用教程克隆源码仓库安装一遍本地预览环境就可以了，如果你会遵循Git提交规则，不管到哪有多少个设备都可以一起用，也可以随时恢复到任意一次提交的版本。</p>
+<h2 id="怎么更换-x2F-安装-x2F-配置主题？"><a href="#怎么更换-x2F-安装-x2F-配置主题？" class="headerlink" title="怎么更换&#x2F;安装&#x2F;配置主题？"></a>怎么更换&#x2F;安装&#x2F;配置主题？</h2><p>请打开网站配置文件 <code>_config.yml</code> 仔细看下，有更换主题的配置注释。至于主题安装及功能配置，每个主题大同小异，但言而总之，请找到主题的说明文档，根据主题文档去操作。</p>
+<h2 id="去哪找自己喜欢的主题？"><a href="#去哪找自己喜欢的主题？" class="headerlink" title="去哪找自己喜欢的主题？"></a>去哪找自己喜欢的主题？</h2><p>你喜欢啥样的咱也不知道，请自行到 <a href="https://hexo.io/themes/">Hexo官方主题展示页</a> 去挑选，萝卜白菜都是你自己的喜好。</p>
+<h2 id="关于页面怎么来的？"><a href="#关于页面怎么来的？" class="headerlink" title="关于页面怎么来的？"></a>关于页面怎么来的？</h2><p>是自己建的，内容是自己写的，有些主题文档中也会提及，或者请参考：<a href="https://yiwangmeng.com/common-problems-and-solutions-of-goodhexo#%E5%85%B3%E4%BA%8E%E8%8F%9C%E5%8D%95%E6%80%8E%E4%B9%88%E6%9D%A5">关于菜单怎么来</a></p>
+<h2 id="怎么我改了没效果？"><a href="#怎么我改了没效果？" class="headerlink" title="怎么我改了没效果？"></a>怎么我改了没效果？</h2><p>任何增删改都需要提交同步到上端仓库，请确保你所做的更改已经提交同步完成，然后等几分钟服务器刷新缓存，对照内容维护可参考：<a href="/guide-how-to-build-site-6.html" title="从零开始建个小站 - 4. 练手内容维护">从零开始建个小站 - 4. 练手内容维护</a> 中相关内容。</p>
+<h2 id="改了几行代码，就异常了"><a href="#改了几行代码，就异常了" class="headerlink" title="改了几行代码，就异常了"></a>改了几行代码，就异常了</h2><p>改了啥自己清楚，Git历史记录中也能对比前后差异，所以改完建议本地预览一下结果，启动 <code>hexo s</code> 预览的时候就会显示日志，循着异常日志去看下具体什么问题，然后对应修正即可。</p>
+<p>或者把错误提示关键词丢给本站战略合作伙伴 Google和百度，让我们的战略伙伴助你一臂之力。</p>
+<h2 id="MarkDown语法我不会😢"><a href="#MarkDown语法我不会😢" class="headerlink" title="MarkDown语法我不会😢"></a>MarkDown语法我不会😢</h2><p>MarkDown语法已经很简单易懂了，这里有一个章节列了几个常用到的基本语法： <a href="/guide-how-to-build-site-6.html" title="从零开始建个小站 - 4. 练手内容维护">从零开始建个小站 - 4. 练手内容维护</a> ，更多可以阅读后文更专业的MarkDown语法教程。</p>
+<p>对照教程敲一两遍就会了，用啥查啥临时抱佛脚都能应付得了。实在不会可以借助编辑器界面化操作，或者你就当Word或记事本写内容都行，无非就是少了点格式样式。</p>
+]]></content>
+      <categories>
+        <category>做网站</category>
+      </categories>
+      <tags>
+        <tag>教程</tag>
+      </tags>
+  </entry>
+</search>
